@@ -5,8 +5,9 @@ var app		= express();
 app.use(bodyParser.text());
 
 app.post('/', function(req, res) {
-	console.log(req);
-	res.end("yes");
+	//console.log(req);
+	var json = JSON.parse(req.body);
+	console.log(JSON.stringify(json));
 });
 
 app.listen(3000,function() {
