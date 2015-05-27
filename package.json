@@ -1,0 +1,13 @@
+{
+	"name": "mowat-server",
+	"version": "0.0.1",
+	"description": "Analytics tool to collect sensor data. See mowat-client for client-side",
+	"repository": {
+		"type": "git",
+		"url": "https://projects.teco.edu/mowat-server.git"
+	},
+	"dependencies": {
+		"body-parser": "^1.8.1",
+		"express": "^4.9.0"
+	}
+}
