@@ -7,7 +7,6 @@ var connection	= mysql.createConnection({
 	password: 'teco',
 	database: 'mowat'
 });
-
 connection.connect(function(error) {
 	if(!error) {
 		console.log("Database connection established.");
@@ -17,6 +16,12 @@ connection.connect(function(error) {
 });
 
 var app		= express();
+
+var modulesPath = require("path").join(__dirname, "modules");
+
+require("fs").readdirSync(modulesPath).forEach(function(file) {
+	require("./modules/" + file);
+});
 
 app.use(bodyParser.text());
 
