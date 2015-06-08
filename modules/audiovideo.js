@@ -24,15 +24,6 @@ var minimist = require('minimist');
 var url = require('url');
 var kurento = require('kurento-client');
 
-var argv = minimist(process.argv.slice(2),
-{
-  default:
-  {
-    as_uri: "http://localhost:8080/",
-    ws_uri: "ws://localhost:8888/kurento"
-  }
-});
-
 var app = express();
 
 /*
@@ -61,11 +52,8 @@ var kurentoClient = null;
  * Server startup
  */
 
-var asUrl = url.parse(argv.as_uri);
-var port = asUrl.port;
-var server = app.listen(port, function() {
+var server = app.listen(8080, function() {
 	console.log('Kurento Tutorial started');
-	console.log('Open ' + url.format(asUrl) + ' with a WebRTC capable browser');
 });
 
 var wss = new ws.Server({
@@ -254,4 +242,4 @@ function stop(sessionId) {
 	}
 }
 
-app.use(express.static(path.join(__dirname, 'static')));
+//app.use(express.static(path.join(__dirname, 'static')));
