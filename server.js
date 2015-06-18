@@ -28,7 +28,22 @@ app.use(bodyParser.text());
 app.post('/', function(req, res) {
 	//console.log(req);
 	var json = JSON.parse(req.body);
-	console.log(JSON.stringify(json));
+	for(var component in json) {
+		for(var timestamp in component) {
+			var query = 'INSERT INTO `' + component + '` (';
+			var keys, values = '';
+			for(var data in timestamp) {
+				keys += '`' + data + '`, ';
+				values += "'" + timestamp[data] + "',";
+			}
+			keys = keys.slice(0, -2);
+			values = values.slice(0, -1);
+			query += keys + ') VALUES(' + values + ');';
+			console.log(query);
+			connection.query(query);
+		}
+	}
+	//console.log(JSON.stringify(json));
 });
 
 app.listen(3000,function() {
