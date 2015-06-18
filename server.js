@@ -34,7 +34,7 @@ app.post('/', function(req, res) {
 				if(json[component].hasOwnProperty(timestamp)) {
 					console.log(timestamp + ": " + JSON.stringify(json[component][timestamp]));
 					var query = 'INSERT INTO `' + component + '` (';
-					var keys = "", values = "";
+					var keys = "`userID`, `timestamp`, ", values = "'1234','" + timestamp + "',";
 					for(var data in json[component][timestamp]) {
 						if(json[component][timestamp].hasOwnProperty(data)) {
 							keys += '`' + data + '`, ';
