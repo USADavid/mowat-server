@@ -23,7 +23,7 @@ require("fs").readdirSync(modulesPath).forEach(function(file) {
 	require("./modules/" + file);
 });
 
-app.use(bodyParser.text());
+app.use(bodyParser.text({limit: '50mb'}));
 
 app.post('/', function(req, res) {
 	//console.log(req);
