@@ -1,0 +1,10 @@
+mysql:
+    build: ./mysql
+    ports:
+        - "3306:3306"
+node:
+    build: ./node
+    links:
+        - mysql
+    ports:
+        - "3000:3000"
