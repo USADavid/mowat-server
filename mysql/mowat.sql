@@ -10,33 +10,33 @@ CREATE DATABASE IF NOT EXISTS `mowat` DEFAULT CHARACTER SET latin1 COLLATE latin
 USE `mowat`;
 
 CREATE TABLE IF NOT EXISTS `motion` (
-  `userID` int(11) NOT NULL,
+  `userID` VARCHAR(200) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
-  `accelerationX` double NOT NULL,
-  `accelerationY` double NOT NULL,
-  `accelerationZ` double NOT NULL,
-  `accelerationIncludingGravityX` double NOT NULL,
-  `accelerationIncludingGravityY` double NOT NULL,
-  `accelerationIncludingGravityZ` double NOT NULL,
-  `rotationRateBeta` double NOT NULL,
-  `rotationRateGamma` double NOT NULL,
-  `rotationRateAlpha` double NOT NULL,
-  `interval` double NOT NULL,
+  `accelerationX` VARCHAR(200) NOT NULL,
+  `accelerationY` VARCHAR(200) NOT NULL,
+  `accelerationZ` VARCHAR(200) NOT NULL,
+  `accelerationIncludingGravityX` VARCHAR(200) NOT NULL,
+  `accelerationIncludingGravityY` VARCHAR(200) NOT NULL,
+  `accelerationIncludingGravityZ` VARCHAR(200) NOT NULL,
+  `rotationRateBeta` VARCHAR(200) NOT NULL,
+  `rotationRateGamma` VARCHAR(200) NOT NULL,
+  `rotationRateAlpha` VARCHAR(200) NOT NULL,
+  `interval` VARCHAR(200) NOT NULL,
   UNIQUE KEY `userID` (`userID`,`timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `orientation` (
-  `userID` int(11) NOT NULL,
+  `userID` VARCHAR(200) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
-  `beta` int(11) NOT NULL,
-  `gamma` int(11) NOT NULL,
-  `alpha` int(11) NOT NULL,
-  `absolute` int(11) NOT NULL,
+  `beta` VARCHAR(200) NOT NULL,
+  `gamma` VARCHAR(200) NOT NULL,
+  `alpha` VARCHAR(200) NOT NULL,
+  `absolute` VARCHAR(200) NOT NULL,
   UNIQUE KEY `userID` (`userID`,`timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `touch` (
-  `userID` int(11) NOT NULL,
+  `userID` VARCHAR(200) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   `identifier` bigint(20) NOT NULL,
   `target` varchar(200) NOT NULL,
