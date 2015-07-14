@@ -29,28 +29,31 @@ app.post('/', function(req, res) {
 	//console.log(req);
 	var userID = "undefined";
 	var json = JSON.parse(req.body);
+	console.log(JSON.stringify(json));
 	for(var component in json) {
 		if(component == "userID") {
 			userID = json[component];
-		} else if(json.hasOwnProperty(component)) {
-			for(var timestamp in json[component]) {
-				if(json[component].hasOwnProperty(timestamp)) {
-					console.log(timestamp + ": " + JSON.stringify(json[component][timestamp]));
-					var query = 'INSERT INTO `' + component + '` (';
-					var keys = "`userID`, `timestamp`, ", values = "'" + userID +"','" + timestamp + "',";
-					for(var data in json[component][timestamp]) {
-						if(json[component][timestamp].hasOwnProperty(data)) {
-							keys += '`' + data + '`, ';
-							values += "'" + json[component][timestamp][data] + "',";
+		} else {
+			if(json.hasOwnProperty(component)) {
+				for(var timestamp in json[component]) {
+					if(json[component].hasOwnProperty(timestamp)) {
+						console.log(timestamp + ": " + JSON.stringify(json[component][timestamp]));
+						var query = 'INSERT INTO `' + component + '` (';
+						var keys = "`userID`, `timestamp`, ", values = "'" + userID +"','" + timestamp + "',";
+						for(var data in json[component][timestamp]) {
+							if(json[component][timestamp].hasOwnProperty(data)) {
+								keys += '`' + data + '`, ';
+								values += "'" + json[component][timestamp][data] + "',";
+							}
 						}
+						keys = keys.slice(0, -2);
+						values = values.slice(0, -1);
+						query += keys + ') VALUES(' + values + ');';
+						console.log("Keys: " + keys);
+						console.log("Values: " + values);
+						console.log(query);
+						connection.query(query);
 					}
-					keys = keys.slice(0, -2);
-					values = values.slice(0, -1);
-					query += keys + ') VALUES(' + values + ');';
-					console.log("Keys: " + keys);
-					console.log("Values: " + values);
-					console.log(query);
-					connection.query(query);
 				}
 			}
 		}
