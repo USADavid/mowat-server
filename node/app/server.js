@@ -27,19 +27,16 @@ app.use(bodyParser.text({limit: '50mb'}));
 
 app.post('/', function(req, res) {
 	//console.log(req);
-	var userID = "undefined";
 	var json = JSON.parse(req.body);
 	console.log(JSON.stringify(json));
 	for(var component in json) {
-		if(component == "userID") {
-			userID = json[component];
-		} else {
+		if(component != "userID") {
 			if(json.hasOwnProperty(component)) {
 				for(var timestamp in json[component]) {
 					if(json[component].hasOwnProperty(timestamp)) {
 						console.log(timestamp + ": " + JSON.stringify(json[component][timestamp]));
 						var query = 'INSERT INTO `' + component + '` (';
-						var keys = "`userID`, `timestamp`, ", values = "'" + userID +"','" + timestamp + "',";
+						var keys = "`userID`, `timestamp`, ", values = "'" + json["userID"] +"','" + timestamp + "',";
 						for(var data in json[component][timestamp]) {
 							if(json[component][timestamp].hasOwnProperty(data)) {
 								keys += '`' + data + '`, ';
