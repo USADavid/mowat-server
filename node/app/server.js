@@ -56,6 +56,7 @@ app.post('/', function(req, res) {
 			}
 		}
 	}
+	res.end();
 	//console.log(JSON.stringify(json));
 });
 
