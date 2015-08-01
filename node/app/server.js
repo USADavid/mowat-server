@@ -3,6 +3,7 @@ var bodyParser	= require("body-parser");
 var mysql	= require("mysql");
 var connection	= mysql.createConnection({
 	host	: 'mysql',
+	port	: '3306',
 	user	: 'root',
 	password: '',
 	database: 'mowat'
